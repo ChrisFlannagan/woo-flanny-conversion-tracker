@@ -26,6 +26,7 @@ if ( ! class_exists( 'QCT_WOO' ) ) {
 
 		public function template_page() {
 			//Include our settings page template
+			require_once( sprintf( "%s/control/qtc_results.php", dirname( __FILE__ ) ) );
 			include( sprintf( "%s/views/qtc_admin_page.php", dirname( __FILE__ ) ) );
 		}
 	}

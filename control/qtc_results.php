@@ -11,14 +11,18 @@ class QTC_RESULTS {
 
 	public function __construct( $tracking_code ) {
 		global $wpdb;
-		$prefix = $wpdb->get_prefix();
+		$prefix = $wpdb->prefix;
 		$order_ids = $wpdb->get_col( $wpdb->prepare( " 
  			SELECT post_id
 			FROM $wpdb->postmeta 
 			WHERE meta_key=%s",
-			$tracking_code ) );
+			'_qtc_woo_tracked_' . $tracking_code ) );
 		foreach ( $order_ids as $id ) {
-			$orders[] = new WC_Order( $id );
+			$this->orders[] = new WC_Order( $id );
 		}
+	}
+
+	public function get_count() {
+		return count( $this->orders );
 	}
 }

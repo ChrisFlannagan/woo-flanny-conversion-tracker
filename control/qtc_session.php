@@ -28,7 +28,7 @@ class QTC_SESSION {
 	 */
 	public static function record_conversion( $order_id ) {
 		if ( isset ( $_SESSION['qtc_woo_tracking_code'] ) ) {
-			update_post_meta( $order_id, "_qtc_woo_tracked_" . $_SESSION['qtc_woo_tracking_code'], 1 );
+			update_post_meta( $order_id, '_qtc_woo_tracked_' . $_SESSION['qtc_woo_tracking_code'], 1 );
 		}
 	}
 }

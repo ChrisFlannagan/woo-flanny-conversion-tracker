@@ -2,16 +2,9 @@
 if( ! current_user_can( 'manage_options' ) ) {
 	exit();
 }
-
-$saved = '';
-
-if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
-	
-}
 ?>
 <div class="wrap">
 	<h2>Woo Conversion Tracking</h2>
-	<?php echo $saved; ?>
 	<form action="" method="POST">
 		<p>
 			<?php wp_nonce_field(); ?>
@@ -21,4 +14,10 @@ if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
 			<button type="submit">View Results</button>
 		</p>
 	</form>
+	<?php
+	if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
+		$qtc_results = new QTC_RESULTS( $_POST['tracking_code'] );
+		echo '<p>Total Conversions: ' . $qtc_results->get_count() . '</p>';
+	}
+	?>
 </div>
