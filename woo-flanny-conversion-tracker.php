@@ -10,6 +10,9 @@
 if ( ! class_exists( 'QCT_WOO' ) ) {
 	class QCT_WOO {
 		public function __construct() {
+			require_once( sprintf( "%s/control/qtc_session.php", dirname( __FILE__ ) ) );
+			add_action( 'init', [ 'QTC_SESSION', 'initialize' ] );
+			add_action( 'woocommerce_thankyou', [ 'QTC_SESSION', 'record_conversion' ] );
 			add_action( 'admin_menu', array( $this, 'qct_admin_page' ) );
 		}
 
