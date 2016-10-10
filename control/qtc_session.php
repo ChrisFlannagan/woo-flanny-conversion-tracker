@@ -9,14 +9,8 @@ class QTC_SESSION {
 	 * Initialize a session if there's a tracking link attached to the url
 	 */
 	public static function initialize() {
-		// Begin a session if not already going
-		if ( ! session_id() ) {
-			session_start();
-		}
 		// Add tracking code to session
-		if ( isset( $_GET['qtc_woo_tracking_code'] ) ) {
-			$_SESSION['qtc_woo_tracking_code'] = sanitize_text_field( $_GET['qtc_woo_tracking_code'] );
-		}
+		setcookie( 'qtc_woo_tracking_code', sanitize_key( $_GET['qtc_woo_tracking_code'] ), time() + ( 3 * 86400 ), COOKIEPATH, COOKIE_DOMAIN );
 	}
 
 	/**
@@ -27,8 +21,6 @@ class QTC_SESSION {
 	 * @param $order_id
 	 */
 	public static function record_conversion( $order_id ) {
-		if ( isset ( $_SESSION['qtc_woo_tracking_code'] ) ) {
-			update_post_meta( $order_id, '_qtc_woo_tracked_' . $_SESSION['qtc_woo_tracking_code'], 1 );
-		}
+		update_post_meta( $order_id, '_qtc_woo_tracked_' . $_COOKIE['qtc_woo_tracking_code'], 1 );
 	}
 }

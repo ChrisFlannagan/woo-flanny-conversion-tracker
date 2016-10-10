@@ -9,10 +9,22 @@
 
 if ( ! class_exists( 'QCT_WOO' ) ) {
 	class QCT_WOO {
+		/**
+		 * QCT_WOO constructor.
+		 *
+		 * Build only what we need to, init our static sessions object to record only if we
+		 * have a qtc woo tracking request.
+		 * Run conversion only if cookie set.
+		 */
 		public function __construct() {
 			require_once( sprintf( "%s/control/qtc_session.php", dirname( __FILE__ ) ) );
-			add_action( 'init', [ 'QTC_SESSION', 'initialize' ] );
-			add_action( 'woocommerce_thankyou', [ 'QTC_SESSION', 'record_conversion' ] );
+			if ( isset( $_GET['qtc_woo_tracking_code'] ) ) {
+				add_action( 'plugins_loaded', [ 'QTC_SESSION', 'initialize' ] );
+			}
+			if ( isset ( $_COOKIE['qtc_woo_tracking_code'] ) ) {
+				add_action( 'woocommerce_thankyou', [ 'QTC_SESSION', 'record_conversion' ] );
+			}
+			// Prepare our admin page
 			add_action( 'admin_menu', array( $this, 'qct_admin_page' ) );
 		}
 
