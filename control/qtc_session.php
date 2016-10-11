@@ -4,7 +4,7 @@
  * 
  * This tracks the user visiting the page and when they convert
  */
-class QTC_SESSION {
+class QTC_Session {
 	/**
 	 * Initialize a session if there's a tracking link attached to the url
 	 */
@@ -14,7 +14,7 @@ class QTC_SESSION {
 	}
 
 	/**
-	 * This funciton is called when the woocommerce_thankyou hook fires.  It means an order has just been
+	 * This function is called when the woocommerce_thankyou hook fires.  It means an order has just been
 	 * finalized and the hook passes in the $order_id param which we use to store post_meta of the tracking
 	 * code connected to the specific order
 	 * 

@@ -6,7 +6,7 @@
  * Time: 3:07 PM
  */
 
-class QTC_RESULTS {
+class QTC_Results {
 	private $orders = array();
 
 	public function __construct( $tracking_code ) {
@@ -24,5 +24,19 @@ class QTC_RESULTS {
 
 	public function get_count() {
 		return count( $this->orders );
+	}
+
+	public function get_total_value() {
+		if ( $this->get_count() > 0 ) {
+			$total_value = 0;
+			$order_currency = '';
+			foreach ( $this->orders as $order ) {
+				$total_value += $order->get_total();
+				$order_currency = $order->get_order_currency();
+			}
+			return wc_price( $total_value, array( 'currency' => $order_currency ) );
+		} else {
+			return 0;
+		}
 	}
 }

@@ -18,6 +18,7 @@ if( ! current_user_can( 'manage_options' ) ) {
 	if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
 		$qtc_results = new QTC_RESULTS( $_POST['tracking_code'] );
 		echo '<p>Total Conversions: ' . $qtc_results->get_count() . '</p>';
+		echo '<p>Total Value: ' . $qtc_results->get_total_value() . '</p>';
 	}
 	?>
 </div>
