@@ -24,6 +24,7 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 			}
 			if ( isset ( $_COOKIE['qtc_woo_tracking_code'] ) ) {
 				add_action( 'woocommerce_thankyou', [ 'QTC_Session', 'record_conversion' ] );
+				add_action( "woocommerce_thankyou", [ 'QTC_Enhanced_Ecommerce', 'record_conversion' ] );
 			}
 			// Prepare our admin page
 			add_action( 'admin_menu', array( $this, 'qct_admin_pages' ) );

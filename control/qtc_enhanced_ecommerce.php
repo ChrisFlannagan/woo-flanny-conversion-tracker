@@ -21,15 +21,13 @@ class QTC_Enhanced_Ecommerce {
 		}
 	}
 
-	public static function record_conversion( $order ) {
+	public static function record_conversion( $order_id ) {
+		$order = new WC_Order( $order_id );
 		?><script>
 		ga('ec:setAction', 'purchase', {          // Transaction details are provided in an actionFieldObject.
-		  'id': 'T12345',                         // (Required) Transaction id (string).
-		  'affiliation': 'Google Store - Online', // Affiliation (string).
-		  'revenue': '37.39',                     // Revenue (currency).
-		  'tax': '2.85',                          // Tax (currency).
-		  'shipping': '5.34',                     // Shipping (currency).
-		  'coupon': 'SUMMER2013'                  // Transaction coupon (string).
+		  'id': <?php echo $order_id; ?>,
+		  'affiliation': '<?php echo $_COOKIE['qtc_woo_tracking_code']; ?>,
+		  'revenue': <?php echo $order->get_total(); ?>
 		});
 		</script><?php
 	}
