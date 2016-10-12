@@ -27,11 +27,11 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 				add_action( "woocommerce_thankyou", [ 'QTC_Enhanced_Ecommerce', 'record_conversion' ] );
 			}
 			// Prepare our admin page
-			add_action( 'admin_menu', array( $this, 'qct_admin_pages' ) );
+			add_action( 'admin_menu', array( $this, 'qtc_admin_pages' ) );
 			add_action( 'wp_head', [ 'QTC_Enhanced_Ecommerce', 'drop_script' ] );
 		}
 
-		public function qct_admin_pages() {
+		public function qtc_admin_pages() {
 			//Place a link to our settings page under the Wordpress "Settings" menu
 			add_menu_page( 'Woo Conversion Tracking', 'Woo Conversion Tracking', 'manage_options', 'qtc-woo-page', array(
 				$this,

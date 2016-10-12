@@ -3,7 +3,7 @@ Contributors: MrFlannagan
 Tags: ecommerce, e-commerce, conversions, tracking, codes, affiliate, enhanced, google, analytics, store, sales, sell, shop, cart, checkout, paypal, storefront
 Requires at least: 3.5
 Tested up to: 4.6.1
-Stable tag: 1.0
+Stable tag: .5
 Plugin URI: https://whoischris/
 License: GPL
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
