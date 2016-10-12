@@ -28,6 +28,4 @@ if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
 			<button type="submit">Save Settings</button>
 		</p>
 	</form>
-	<?php
-	?>
 </div>
