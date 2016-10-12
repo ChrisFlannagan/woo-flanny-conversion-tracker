@@ -1,6 +1,12 @@
 <?php
 /**
- * 
+ * QTC Enhanced Ecommerce
+ *
+ * An admin setting allows site owners to include google enhanced ecommerce analytics for conversion
+ * and will include the affiliate tracking code.
+ *
+ * It is best if they have all other google analytics plugins/scripts turned off as to not interfere
+ * with pageview counts
  */
 
 class QTC_Enhanced_Ecommerce {
@@ -13,9 +19,8 @@ class QTC_Enhanced_Ecommerce {
 					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-				ga('create', '<?php echo get_option( 'qtc_analytics_ua_code' ); ?>', 'auto');
+				ga('create', '<?php echo esc_attr( get_option( 'qtc_analytics_ua_code' ) ); ?>', 'auto');
 				ga('send', 'pageview');
-				ga('require', 'ec');
 			</script>
 			<!-- End Google Analytics --><?php
 		}
@@ -24,10 +29,11 @@ class QTC_Enhanced_Ecommerce {
 	public static function record_conversion( $order_id ) {
 		$order = new WC_Order( $order_id );
 		?><script>
+		ga('require', 'ec');
 		ga('ec:setAction', 'purchase', {          // Transaction details are provided in an actionFieldObject.
 		  'id': <?php echo $order_id; ?>,
-		  'affiliation': '<?php echo $_COOKIE['qtc_woo_tracking_code']; ?>,
-		  'revenue': <?php echo $order->get_total(); ?>
+		  'affiliation': '<?php echo esc_attr( $_COOKIE['qtc_woo_tracking_code'] ); ?>',
+		  'revenue': '<?php echo $order->get_total(); ?>'
 		});
 		</script><?php
 	}
