@@ -17,6 +17,7 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 		 * Run conversion only if cookie set.
 		 */
 		public function __construct() {
+			require_once( sprintf( "%s/control/qtc_enhanced_ecommerce.php", dirname( __FILE__ ) ) );
 			require_once( sprintf( "%s/control/qtc_session.php", dirname( __FILE__ ) ) );
 			if ( isset( $_GET['qtc_woo_tracking_code'] ) ) {
 				add_action( 'plugins_loaded', [ 'QTC_Session', 'initialize' ] );
@@ -26,6 +27,7 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 			}
 			// Prepare our admin page
 			add_action( 'admin_menu', array( $this, 'qct_admin_pages' ) );
+			add_action( 'wp_head', [ 'QTC_Enhanced_Ecommerce', 'drop_script' ] );
 		}
 
 		public function qct_admin_pages() {
