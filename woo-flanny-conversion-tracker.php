@@ -25,14 +25,18 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 				add_action( 'woocommerce_thankyou', [ 'QTC_Session', 'record_conversion' ] );
 			}
 			// Prepare our admin page
-			add_action( 'admin_menu', array( $this, 'qct_admin_page' ) );
+			add_action( 'admin_menu', array( $this, 'qct_admin_pages' ) );
 		}
 
-		public function qct_admin_page() {
+		public function qct_admin_pages() {
 			//Place a link to our settings page under the Wordpress "Settings" menu
 			add_menu_page( 'Woo Conversion Tracking', 'Woo Conversion Tracking', 'manage_options', 'qtc-woo-page', array(
 				$this,
 				'template_page'
+			) );
+			add_submenu_page( 'qtc-woo-page', 'Woo Conversion Settings', 'Settings', 'manage_options', 'qtc-woo-settings', array(
+				$this,
+				'template_page_settings'
 			) );
 		}
 
@@ -40,6 +44,11 @@ if ( ! class_exists( 'QTC_Woo' ) ) {
 			//Include our settings page template
 			require_once( sprintf( "%s/control/qtc_results.php", dirname( __FILE__ ) ) );
 			include( sprintf( "%s/views/qtc_admin_page.php", dirname( __FILE__ ) ) );
+		}
+
+		public function template_page_settings() {
+			//Include our settings page template
+			include( sprintf( "%s/views/qtc_settings_page.php", dirname( __FILE__ ) ) );
 		}
 	}
 }
