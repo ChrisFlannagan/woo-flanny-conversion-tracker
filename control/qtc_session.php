@@ -4,6 +4,9 @@
  * 
  * This tracks the user visiting the page and when they convert
  */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class QTC_Session {
 	/**
 	 * Initialize a session if there's a tracking link attached to the url
@@ -21,6 +24,6 @@ class QTC_Session {
 	 * @param $order_id
 	 */
 	public static function record_conversion( $order_id ) {
-		update_post_meta( $order_id, '_qtc_woo_tracked_' . $_COOKIE['qtc_woo_tracking_code'], 1 );
+		update_post_meta( $order_id, '_qtc_woo_tracked_' . sanitize_key( $_COOKIE['qtc_woo_tracking_code'] ), 1 );
 	}
 }

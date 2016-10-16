@@ -6,7 +6,7 @@ $ua_code = '';
 $ua_on = '';
 
 if( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'] ) ) {
-	update_option( 'qtc_analytics_ua_code', $_POST['ua_code'] );
+	update_option( 'qtc_analytics_ua_code', sanitize_title_with_dashes( $_POST['ua_code'] ) );
 	if ( isset( $_POST['ua_on'] ) ) {
 		update_option( 'qtc_analytics_on', true );
 		$ua_on = ' checked';

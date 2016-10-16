@@ -6,6 +6,8 @@
  * Time: 3:07 PM
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class QTC_Results {
 	private $orders = array();
 

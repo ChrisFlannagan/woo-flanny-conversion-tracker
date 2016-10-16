@@ -9,6 +9,8 @@
  * with pageview counts
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class QTC_Enhanced_Ecommerce {
 	public static function drop_script() {
 		if ( get_option( 'qtc_analytics_on' ) !== false ) {

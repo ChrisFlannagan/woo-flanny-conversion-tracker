@@ -7,6 +7,8 @@
  * Author URI:  https://whoischris.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! class_exists( 'QTC_Woo' ) ) {
 	class QTC_Woo {
 		/**
